@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Escape / Unescape</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Escape / Unescape</h1>
+        <div class="form-group">
+            <label for="escapeText">Enter some text to escape:</label>
+            <textarea class="form-control" id="escapeText" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="escapeBtn">Escape</button>
+        </div>
+        <div class="form-group">
+            <label for="unescapeText">Enter some text to unescape:</label>
+            <textarea class="form-control" id="unescapeText" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="unescapeBtn">Unescape</button>
+        </div>
+    </div>
+    
+    <script>
+      // Get references to the input and output text areas
+const escapeTextArea = document.getElementById("escapeText");
+const unescapeTextArea = document.getElementById("unescapeText");
+
+// Get references to the buttons
+const escapeBtn = document.getElementById("escapeBtn");
+const unescapeBtn = document.getElementById("unescapeBtn");
+
+// Add click event listeners to the buttons
+escapeBtn.addEventListener("click", () => {
+  try {
+    // Get the value of the input textarea
+    const inputText = escapeTextArea.value;
+
+    // Escape the input text
+    const escapedText = escape(inputText);
+
+    // Set the escaped text as the value of the output textarea
+    unescapeTextArea.value = escapedText;
+  } catch (error) {
+    // Display an error message if there was an error escaping the text
+    console.error("Error escaping text:", error);
+    alert("An error occurred while escaping the text. Please try again.");
+  }
+});
+
+unescapeBtn.addEventListener("click", () => {
+  try {
+    // Get the value of the input textarea
+    const inputText = unescapeTextArea.value;
+
+    // Unescape the input text
+    const unescapedText = unescape(inputText);
+
+    // Create a new element to display the unescaped text
+    const displayElement = document.createElement("div");
+    displayElement.innerHTML = unescapedText;
+
+    // Clear the output textarea and append the display element to it
+    unescapeTextArea.value = "";
+    unescapeTextArea.appendChild(displayElement);
+  } catch (error) {
+    // Display an error message if there was an error unescaping the text
+    console.error("Error unescaping text:", error);
+    alert("An error occurred while unescaping the text. Please try again.");
+  }
+});
+
+
+    </script>
+</body>
+</html>
